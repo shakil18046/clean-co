@@ -1,12 +1,13 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./component/Navbar";
-import Home from "./pages/Home";
+
 import { Route, Routes } from "react-router-dom";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
+import Home from "./pages/Home/Home";
 
 function App() {
   return (

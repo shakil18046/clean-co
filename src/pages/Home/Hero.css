@@ -1,0 +1,11 @@
+.hero-content {
+  padding: 0;
+}
+.hero {
+  background-color: #ffedd5;
+}
+@media screen and (max-width: 576px) {
+  .hero-content {
+    flex-direction: column;
+  }
+}
