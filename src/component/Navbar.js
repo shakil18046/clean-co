@@ -83,7 +83,7 @@ const Navbar = ({ children }) => {
                 </li>
                 <li>
                   <label class="swap swap-rotate">
-                    <input data-toggle-theme="dark,light" type="checkbox" />
+                    <input type="checkbox" />
 
                     <svg
                       class="swap-on fill-current w-10 h-10"

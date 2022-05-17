@@ -8,6 +8,7 @@ import Services from "./pages/Services";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Home from "./pages/Home/Home";
+import RequireAuth from "./RequireAuth";
 
 function App() {
   return (
@@ -16,7 +17,14 @@ function App() {
         <Routes>
           <Route path="/" element={<Home></Home>}></Route>
           <Route path="/about" element={<About></About>}></Route>
-          <Route path="/Services" element={<Services></Services>}></Route>
+          <Route
+            path="/Services"
+            element={
+              <RequireAuth>
+                <Services></Services>
+              </RequireAuth>
+            }
+          ></Route>
           <Route path="/Conatct" element={<Contact></Contact>}></Route>
           <Route path="/Login" element={<Login></Login>}></Route>
         </Routes>
