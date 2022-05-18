@@ -1,13 +1,45 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import UseAdmin from "../hooks/UseAdmin";
 
 const Navbar = ({ children }) => {
+  const [admin] = UseAdmin();
+  const { pathname } = useLocation();
+  console.log(pathname);
   return (
     <div>
       <div className="drawer drawer-end">
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           <div className="w-full navbar bg-base-100 fixed top-0 z-50">
+            {/* <label
+              for="my-drawer-2"
+              class="btn btn-primary drawer-button lg:hidden"
+            >
+              Open drawer
+            </label> */}
+            {pathname.includes("Dashboard") && (
+              <label
+                tabindex="0"
+                class="btn btn-ghost btn-circle lg:hidden"
+                for="my-drawer-2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h7"
+                  />
+                </svg>
+              </label>
+            )}
             <div className="flex-1 px-2 mx-2">clean co</div>
             <div className="flex-none lg:hidden">
               <label for="my-drawer-3" className="btn btn-square btn-ghost">
@@ -54,6 +86,13 @@ const Navbar = ({ children }) => {
                     Login
                   </NavLink>
                 </li>
+                {admin && (
+                  <li>
+                    <NavLink className="rounded-lg" to="/Dashboard">
+                      Dashboard
+                    </NavLink>
+                  </li>
+                )}
                 <li className="dropdown dropdown-hover dropdown-end">
                   <label
                     tabindex="0"

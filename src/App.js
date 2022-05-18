@@ -1,32 +1,36 @@
-import logo from "./logo.svg";
 import "./App.css";
 import Navbar from "./component/Navbar";
 
 import { Route, Routes } from "react-router-dom";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Contact from "./pages/Contact";
-import Login from "./pages/Login";
-import Home from "./pages/Home/Home";
+import { publicRoute } from "./routes/PublicRoutes";
 import RequireAuth from "./RequireAuth";
-
+import { PrivateRoute } from "./routes/PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import Dashboard from "./pages/Dashboard/Dashboard";
 function App() {
   return (
     <div className="App">
       <Navbar>
         <Routes>
-          <Route path="/" element={<Home></Home>}></Route>
-          <Route path="/about" element={<About></About>}></Route>
-          <Route
-            path="/Services"
-            element={
-              <RequireAuth>
-                <Services></Services>
-              </RequireAuth>
-            }
-          ></Route>
-          <Route path="/Conatct" element={<Contact></Contact>}></Route>
-          <Route path="/Login" element={<Login></Login>}></Route>
+          {publicRoute.map(({ path, Component }, index) => (
+            <Route
+              key={index}
+              path={path}
+              element={<Component></Component>}
+            ></Route>
+          ))}
+          <Route element={<RequireAuth></RequireAuth>}>
+            {PrivateRoute.map(({ path, Component }, index) => (
+              <Route
+                key={index}
+                path={path}
+                element={<Component></Component>}
+              ></Route>
+            ))}
+          </Route>
+          <Route element={<AdminRoute></AdminRoute>}>
+            <Route path="/Dashboard" element={<Dashboard></Dashboard>}></Route>
+          </Route>
         </Routes>
       </Navbar>
     </div>
